@@ -1,0 +1,33 @@
+img{
+    height: 200px;
+    width: 200px;
+    border: 2px;
+    border-radius: 50%;
+    object-fit: fill;
+    border-color: black;
+    border-collapse: collapse;
+}
+#main{
+    border: 5px cornflowerblue;
+}
+#tdmain{
+padding: 50px;
+background-color: rgba(84, 82, 86, 0.856);
+}
+#td2main{
+    vertical-align: top;
+    background-color: rgb(156, 157, 153);
+
+}
+#aboutme{
+    padding: 30px;
+}
+#experience{
+    padding: 40px;
+}
+#edutd{
+    padding: 40px;
+}
+#awctd{
+    padding: 40px;
+}
