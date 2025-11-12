@@ -1,0 +1,75 @@
+body{
+    background:url(background\ image.jpeg)
+}
+#mainBox{
+    border: 2px solid black;
+    background-color: aliceblue;
+    height: 300px;
+    width: 500px;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 2px 2px 2px 2px black;
+    border-radius: 5%;
+}
+#LoginForm{
+    width: fit-content;
+    margin: 10px;
+    padding: 5px;
+}
+.formField{
+    margin: 10px;
+    label {
+        color: blue;
+        font-size: small;
+    }
+    input {
+padding: 10px;
+border: 1px solid #000;
+border-radius: 5%;
+    }
+
+}
+#formheading{
+    margin: 10px;
+    text-align: center;
+    color: blue;
+}
+#formControl{
+    text-align: center;
+    button{
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5%;
+    }
+}
+    #cancelB {
+  border: 1px solid #ff0000;
+  background-color: #f74c4c;
+  color: aliceblue;
+}
+
+#loginB {
+  border: 1px solid #007816;
+  background-color: #3c7847;
+  color: aliceblue;
+}
+
+#cancelB:hover {
+  color: #f74c4c;
+  background-color: aliceblue;
+}
+
+#loginB:hover {
+  color: #3c7847;
+  background-color: aliceblue;
+}
+
+#cancelB:active {
+  background-color: blue;
+  color: aliceblue;
+}
+
+#loginB:active {
+  background-color: blue;
+  color: aliceblue;
+}
