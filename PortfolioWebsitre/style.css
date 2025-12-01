@@ -228,9 +228,9 @@
   }
   .pro {
     padding: 10px;
-    width: 70%;
+    width: 100%;
     text-align: left;
-    width: 600px;
+    /* width: 700px; */
   }
   .text5 {
     font-weight: bold;
@@ -263,7 +263,7 @@
     align-items: center;
     text-align: left;
     border-radius: 10px;
-    width: 600px;
+    width: 700px;
     object-fit: cover;
   }
   #resume {
@@ -280,18 +280,22 @@
     }
     #res2 {
       font-size: 16px;
-      color: rgb(173, 165, 165);
+      color: rgba(198, 192, 192, 0.923);
       padding-bottom: 20px;
       line-height: 1.3;
     }
     #res3 {
-      width: 100px;
+      width: 140px;
       height: 40px;
       font-size: 12px;
       font-weight: bold;
+      border: none;
+      text-align: center;
+      background-color: white;
+      border-radius: 8px;
     }
     #res3:hover {
-      background-color: rgb(173, 165, 165);
+      background-color: rgba(232, 227, 227, 0.875);
     }
   }
   #resumeMain {
@@ -628,4 +632,5 @@ font-size: 64%;
 margin-bottom: 10px;
 margin-top: 0px!important;
 padding-top: 0px!important;
-border-radius: 10px;}
+border-radius: 10px;
+}

@@ -1,0 +1,16 @@
+.num{
+    background: grey;
+    height: 70px;
+    width: 75px;
+    font-size: 35px;
+    text-align: center;
+    border-radius: 8px;
+font-weight: bold;
+margin-top: 15px;
+}
+.btn{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-between;
+    
+}

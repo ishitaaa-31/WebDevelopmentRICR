@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <section id="navBar" class="bg-primary text-light text-center h1">
+      Dice Game
+    </section>
+    <div class="d-flex gap-lg-5 justify-content-evenly mt-5" id="mainDiv">
+      <div
+        class="container mx-5 w-25 border border-1 shadow px-5 d-grid justify-content-center"
+        id="subDiv1"
+      >
+        <div class="d-flex justify-content-center my-2 h3">Player 1 <br /></div>
+        <img
+          src="img/dice.jpg"
+          alt=""
+          class="d-flex justify-content-center mx-5 px-2 object-fit-fill text-center"
+          id="p1dice"
+        />
+        <br />
+        <button
+          class="btn bg-primary text-light text-center my-3 border border-0 rounded mx-5"
+          onclick="p1Play()"
+          disabled
+          id="p1btn"
+        >
+          Roll Dice
+        </button>
+      </div>
+
+      <div
+        class="container mx-5 w-25 border border-1 shadow px-5 d-grid justify-content-center"
+        id="subDiv2"
+      >
+        <div class="d-flex justify-content-center h3 my-2">Player 2 <br /></div>
+        <img
+          src="img/dice.jpg"
+          alt=""
+          class="d-flex justify-content-center mx-5 px-3 object-fit-fill"
+          id="p2dice"
+        />
+        <br />
+        <button
+          class="btn bg-primary text-light text-center border my-3 border-0 rounded mx-5"
+          id="p2btn"
+          disabled
+          onclick="p2Play()"
+        >
+          Roll Dice
+        </button>
+      </div>
+    </div>
+
+    <section class="mt-5">
+      <div class="text-center h2 mx-3 my-3" id="sc">Score Board</div>
+      <div class="d-flex justify-content-evenly px-3 my-3">
+        <div class="text-center">
+          Player 1 <br />
+          <label for="num" id="p1sc">0</label>
+        </div>
+        <div class="text-center">
+          Player 2 <br />
+        <label for="num" id="p2sc">0</label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center gap-5 my-3" id="scBtn">
+        <button
+          class="btn mx-4 bg-success text-light border border-0 rounded"
+          onclick="start()"
+          id="start"
+        >
+          Start Game
+        </button>
+        <button
+          class="mx-4 btn bg-danger text-light border border-0 rounded"
+          onclick="restart()"
+          disabled
+          id="restart"
+        >
+          Restart Game
+        </button>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>

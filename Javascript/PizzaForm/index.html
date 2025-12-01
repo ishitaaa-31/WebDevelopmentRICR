@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizza Order Form</title>
+</head>
+<body>
+
+<h2>Pizza Order Form</h2>
+
+<form>
+
+<div>
+    <label for="fname">First name :</label>
+    <input type="text" name="fname" id="fname" />
+</div>
+
+<div>
+    <label for="lname">Last name :</label>
+    <input type="text" name="lname" id="lname" />
+</div>
+
+<div>
+    <label for="email">Enter email address :</label>
+    <input type="email" name="email" id="email" />
+</div>
+
+<div>
+    <label for="phone">Phone number :</label>
+    <input type="tel" name="phone" id="phone" />
+</div>
+
+<div>
+    <label for="deliverydate">Preferred delivery date :</label>
+    <input type="date" name="deliverydate" id="deliverydate" />
+</div>
+
+<div>
+    <label for="size">Size :</label>
+    <select name="size" id="size">
+        <option value="">Select size</option>
+        <option value="small">small</option>
+        <option value="medium">medium</option>
+        <option value="large">large</option>
+    </select>
+</div>
+
+<div>
+    <label for="crust">Crust :</label>
+    <select name="crust" id="crust">
+        <option value="">Select crust</option>
+        <option value="thin">thin</option>
+        <option value="hand-tossed">hand-tossed</option>
+        <option value="deep-dish">deep-dish</option>
+    </select>
+</div>
+
+<div>
+    <label for="toppings">Toppings :</label>
+    <select name="toppings" id="toppings">
+        <option value="">Select toppings</option>
+        <option value="pepperoni">pepperoni</option>
+        <option value="mushrooms">mushrooms</option>
+        <option value="onions">onions</option>
+        <option value="olives">olives</option>
+    </select>
+</div>
+
+<div>
+    <label for="quantity">Quantity :</label>
+    <select name="quantity" id="quantity">
+        <option value="">Select quantity</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+</div>
+
+<div>
+    <label for="ccnum">Credit card number :</label>
+    <input type="text" name="ccnum" id="ccnum" />
+</div>
+
+<div>
+    <label for="cvv">CVV :</label>
+    <input type="text" name="cvv" id="cvv" />
+</div>
+
+<div>
+    <label for="notes">Additional notes :</label>
+    <textarea name="notes" id="notes"></textarea>
+</div>
+
+<button type="submit" onclick="Submit()">Submit Order</button>
+
+</form>
+<script src="index.js"></script>
+</body>
+</html>

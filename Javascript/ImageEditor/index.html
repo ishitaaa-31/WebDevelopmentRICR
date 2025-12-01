@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div
+        class="container-fluid bg-primary px-3 py-2 text-center display-6 fw-bold text-light"
+      >
+        Image Editor
+      </div>
+    </header>
+    <main>
+      <div
+        class="container-fluid mx-3 d-flex border border-primary gap-3"
+        id="content"
+      >
+        <!-- fluid se poora space ocupy krta hai -->
+        <div
+          class="border border-danger w-25 d-flex flex-column align-items-center"
+        >
+          <div>
+            <div>
+              <label for="Brightness" class="fw-4 fs-4 pb-3"> Brightness</label>
+              <input
+                type="range"
+                name="Brightness"
+                id="Brightness"
+                min="0"
+                max="100"
+                value="50"
+                onchange="changeBrightness()"
+                class="form-range px-3"
+              />
+              <div class="px-3 d-flex justify-content-between">
+                <span>0</span>
+                <span>100</span>
+              </div>
+            </div>
+            <div class="">
+              <div>
+                <label for="Contrast" class="fw-4 fs-4 pb-3"> Contrast</label>
+              <input
+                type="range"
+                name="Contrast"
+                id="Contrast"
+                min="0"
+                max="100"
+                value="50"
+                onchange="changeContrast()"
+                class="form-range px-3"
+              />
+              <div class="px-3 d-flex justify-content-between">
+                <span>0</span>
+                <span>100</span>
+              </div>
+              </div>
+              <div>
+                <label for="blur" class="fw-4 fs-4 pb-3"> Blur</label>
+                <input
+                  type="range"
+                  name="blur"
+                  id="blur"
+                  min="0"
+                  max="100"
+                  value="50"
+                  onchange="changeBlur()"
+                  class="form-range px-3"
+                />
+                <div class="px-3 d-flex justify-content-between">
+                  <span>0</span>
+                  <span>100</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="hue" class="fw-4 fs-4 pb-3"> Hue-Rotate</label>
+                <input
+                  type="range"
+                  name="hue"
+                  id="hue"
+                  min="0"
+                  max="100"
+                  value="50"
+                  onchange="changeHue()"
+                  class="form-range px-3"
+                />
+                <div class="px-3 d-flex justify-content-between">
+                  <span>0</span>
+                  <span>100</span>
+                </div>
+              </div>
+              <div>
+                <label for="grey" class="fw-4 fs-4 pb-3"> Grayscale</label>
+                <input
+                  type="range"
+                  name="grey"
+                  id="grey"
+                  min="0"
+                  max="100"
+                  value="0"
+                  onchange="changeGrey()"
+                  class="form-range px-3"
+                />
+                <div class="px-3 d-flex justify-content-between">
+                  <span>0</span>
+                  <span>100</span>
+                </div>
+              </div>
+              <div>
+                <label for="sepia" class="fw-4 fs-4 pb-3"> Sepia</label>
+                <input
+                  type="range"
+                  name="sepia"
+                  id="sepia"
+                  min="0"
+                  max="100"
+                  value="50"
+                  onchange="changeSepia()"
+                  class="form-range px-3"
+                />
+                <div class="px-3 d-flex justify-content-between">
+                  <span>0</span>
+                  <span>100</span>
+                </div>
+             
+            </div>
+          </div>
+          
+        </div>
+        <div
+          class="border border-success w-75 d-flex justify-content-center align-items-center"
+          id=""
+        >
+          <img src="" alt="image" id="image" />
+          <label for="upload" class="btn btn-outline-primary" id="UploadLabel"
+            ><i class="bi bi-camera2"></i> Upload Image</label
+          >
+          <input
+            type="file"
+            name="upload"
+            id="upload"
+            class="d-none"
+            accept="image/*"
+            onchange="UploadImage()"
+          />
+          <!-- as id and for are same both will work to upload file -->
+        </div>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

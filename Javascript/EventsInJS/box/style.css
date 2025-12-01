@@ -1,0 +1,28 @@
+#main{
+    display: flex;
+    gap: 30px;
+    border: 1px solid black;
+    padding: 20px;
+   
+}
+#subDiv{
+    width: 70%;
+       border: 1px solid black;
+       padding: 20px;
+       h1{
+        text-align: center;
+       }
+}
+label{
+    padding: 30px;
+}
+input{
+    margin: 10px;
+    
+}
+#subDiv2{
+    text-align: center;
+    margin-top: 60px;
+    font-size: 40px;
+
+}
