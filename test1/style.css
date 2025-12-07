@@ -1,0 +1,63 @@
+#homeBtn{
+    text-align: center;
+    align-items: center;
+    margin-left: 50%;
+}
+#navBar{
+    height: 60px;
+    font-size: 30px;
+    color: white;
+    position: sticky;
+    top: 0px;
+}
+#href{
+    color: white;
+}
+#form{
+    display: flex;
+    margin-bottom: 50%;
+}
+.conL{
+    padding: 20px;
+    /* display: flex;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: 150px 300px;
+    
+}
+#MainDiv{
+    margin-left: 30%;
+    
+    margin-right: 20%;
+    margin-top: 50px;
+    width: 600px;
+}
+#courseG{
+    display: grid;
+    grid-template-columns: auto auto ;
+    margin: 80px;
+    padding: 30px;
+    gap: 40px;
+    
+}
+.courseDiv{
+    width: 500px;
+height: 200px;
+}
+.image{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+
+}
+.card{
+    width: 400px;
+    height: 100px;
+    margin: 20px;
+    border: 1px solid black;
+}
+#mainCard{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+}

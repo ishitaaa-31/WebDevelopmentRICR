@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+   <div class="container bg-light w-25 p-3 mt-5 shadow p-3 mb-3 bg-body rounded">
+     
+    <h3 class="text-dark fw-bolder">register</h3>
+    <div class="d-flex gap-2 p-2 border-bottom mb-3">
+      <div><i class="bi bi-person"></i></div>
+      <div class="w-100">
+        <input
+          type="text"
+          id="RegName"
+          placeholder="enter your name"
+          class="border-0 w-100"
+        />
+      </div>
+    </div>
+    <div class="d-flex gap-2 p-2 border-bottom mb-3">
+      <div><i class="bi bi-envelope-at"></i></div>
+      <div class="w-100">
+        <input
+          type="email"
+          name="email"
+          id="emailregister"
+          placeholder="enter your email"
+          class="border-0 w-100"
+        />
+      </div>
+    </div>
+    <div class="d-flex gap-2 p-2 border-bottom mb-3">
+      <div><i class="bi bi-key"></i></div>
+      <div class="w-100">
+        <input
+          type="password"
+          name="pass"
+          id="pass"
+          placeholder="enter passward"
+          class="border-0 w-100"
+        />
+      </div>
+    </div>
+    <div class="d-flex gap-2 p-2 border-bottom mb-3">
+      <div><i class="bi bi-key-fill"></i></div>
+      <div class="w-100">
+        <input
+          type="password"
+          name="pass"
+          id="pass2"
+          placeholder="confirmPassword"
+          class="border-0 w-100"
+        />
+      </div>
+    </div>
+    <div class="d-flex gap-1 p-2 mb-5">
+      <input type="checkbox" name="check" id="check" />
+      <div>i accept all the terms and conditions</div>
+    </div>
+    <div>
+      <button
+        id="registerbutton"
+        class="btn btn-primary w-100 mb-3"
+        onclick="Register()"
+      >
+        register
+      </button>
+    </div>
+    <p class="p-2 text-center">
+      already have an account <span><a href="#">loginnow</a></span>
+    </p>
+   </div>
+  </body>
+</html>
