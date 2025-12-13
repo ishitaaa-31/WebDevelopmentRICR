@@ -1,6 +1,6 @@
 const coordinates = {
   "Jammu and Kashmir": { x: 360, y: 120 },
-  
+
   "Himachal Pradesh": { x: 360, y: 250 },
   Punjab: { x: 300, y: 280 },
   Haryana: { x: 320, y: 320 },
@@ -37,7 +37,6 @@ const coordinates = {
   Kerala: { x: 280, y: 1100 },
 
   Goa: { x: 218, y: 870 },
- 
 };
 
 const capitals = {
@@ -95,7 +94,7 @@ function Marker(state) {
 
   document.getElementById("im").appendChild(marker);
   const sound = document.getElementById("flagSound");
-  sound.currentTime = 0;   // rewind to start
+  sound.currentTime = 0; // rewind to start
   sound.play();
 }
 
@@ -107,15 +106,15 @@ function search() {
 function resetMarkers() {
   document.querySelectorAll(".red").forEach((el) => el.remove());
   document.getElementById("state").value = "";
- 
+
   const sound2 = document.getElementById("flagSound2");
-  sound2.currentTime = 0;   // rewind to start
+  sound2.currentTime = 0; // rewind to start
   sound2.play();
 }
 function markAll() {
   // resetMarkers();
   const keys = Object.keys(coordinates);
-  keys.forEach(state => {
+  keys.forEach((state) => {
     // here state is like int i variable in java
     Marker(state);
   });
