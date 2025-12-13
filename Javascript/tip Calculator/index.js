@@ -1,4 +1,4 @@
-function CalculateTip() {
+function calculateTip() {
   const bill = document.getElementById("bill").value.trim();
   const service = document.getElementById("service").value;
   const people = document.getElementById("people").value.trim();

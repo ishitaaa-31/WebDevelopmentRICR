@@ -16,18 +16,17 @@
     </div>
 
     <div class="container p-4 d-grid gap-3">
-      <!-- Bill Amount -->
+ 
       <div>
         <div class="d-flex gap-2">
           <label class="w-25">Bill Amount :</label>
           <input type="number" id="bill" class="form-control" />
         </div>
-        <span class="text-danger float-end Error" id="BillError"></span>
+        <span class="text-danger  Error" id="BillError"></span>
       </div>
 
-      <!-- Service Quality -->
       <div>
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-1">
           <label class="w-25">How was the service? </label>
           <select id="service" class="form-control">
             <option value="">-- Select --</option>
@@ -41,7 +40,7 @@
         <span class="text-danger float-end Error" id="ServiceError"></span>
       </div>
 
-      <!-- Number of People -->
+    
       <div>
         <div class="d-flex gap-2">
           <label class="w-25">People :</label>
@@ -50,7 +49,7 @@
         <span class="text-danger float-end Error" id="PeopleError"></span>
       </div>
 
-      <button class="btn btn-primary" onclick="CalculateTip()">
+      <button class="btn btn-primary" onclick="calculateTip()">
         Calculate
       </button>
 
