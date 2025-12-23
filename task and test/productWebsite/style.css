@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+#form{
+    display: flex;
+    margin-bottom: 50%;
+}
+.conL{
+    padding: 20px;
+    /* display: flex;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: 150px 300px;
+    
+}
+#MainDiv{
+    margin-left: 30%;
+    
+    margin-right: 20%;
+    margin-top: 50px;
+    width: 600px;
+}
+#courseG{
+    display: grid;
+    grid-template-columns: auto auto ;
+    margin: 80px;
+    padding: 30px;
+    gap: 40px;
+    
+}
+.courseDiv{
+    width: 500px;
+height: 200px;
+}
+.head{
+    color: blueviolet; 
+    font-size: 50px; 
+    font-family: "Courgette", cursive;
+}
+.txt{
+    width: 50%;
+    color: black;
+    font-size: 20px;
+    font-family: cursive;
+}
+#txtImg{
+    max-width:100%;
+    max-height: 70%;
+}
+.navbar{
+    background-color: rgba(137, 43, 226, 0.427);
+}

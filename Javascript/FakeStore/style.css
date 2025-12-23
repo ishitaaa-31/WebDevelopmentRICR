@@ -1,0 +1,20 @@
+#homeMain{
+    height: 100vh;
+}
+.card{
+height: 500px;
+}
+a:hover{
+color: red;
+}
+a:active{
+    color: red; 
+}
+.row{
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.proI{
+    height: 180px;
+}
