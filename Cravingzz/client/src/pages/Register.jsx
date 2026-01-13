@@ -56,7 +56,7 @@ const Register = () => {
     return Object.keys(Error).length > 0 ? false : true;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -66,8 +66,11 @@ const Register = () => {
       return;
     }
 
+    console.log(formData);
+    
+
     try {
-      const res = await api.post("/auth/register", formData);
+      const res = await api.post("/auth/register",formData)
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
@@ -88,7 +91,7 @@ const Register = () => {
               Registration
             </h1>
             <p className="text-lg text-gray-600">
-              Just one step away from your cravings!
+              You are 1 step away to stop your Cavings
             </p>
           </div>
 
@@ -164,7 +167,7 @@ const Register = () => {
                   type="submit"
                   className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg"
                 >
-                 Submit
+                  Submit Registration
                 </button>
                 <button
                   type="reset"
