@@ -3,7 +3,9 @@ import bcrypt from "bcrypt";
 export const UserRegister = async (req, res, next) => {
   try {
     //accept data from frontend
+    console.log(req.body);
     const { fullName, email, mobileNumber, password } = req.body;
+    
 
     if (!fullName || !email || !mobileNumber || !password) {
       const error = new Error("All fields required");
@@ -11,7 +13,7 @@ export const UserRegister = async (req, res, next) => {
       return next(error);
     }
     console.log({ fullName, email, mobileNumber, password });
-    
+
     // check for duplicate user before registeration
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -46,7 +48,7 @@ export const UserLogin = async (req, res, next) => {
       return next(error);
     }
     //check if user registered or not
-    const existingUser = await User.finOne({ email });
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("Email not registered");
       error.statusCode = 402;
@@ -65,7 +67,7 @@ export const UserLogin = async (req, res, next) => {
 };
 export const UserLogout = async (req, res, next) => {
   try {
-    res.status(200).json({message:"Logout Succesfull"})
+    res.status(200).json({ message: "Logout Succesfull" });
   } catch (error) {
     next(error);
   }
