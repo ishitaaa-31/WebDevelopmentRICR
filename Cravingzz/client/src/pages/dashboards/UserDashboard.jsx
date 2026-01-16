@@ -11,10 +11,10 @@ const UserDashboard = () => {
   return (
     <>
       <div className="w-full flex  h-[90vh]">
-        <div className=" w-2/10 bg-(--color-background)">
+        <div className=" w-2/11 bg-(--color-background)">
           <Sidebar active={active} setActive={setActive} />
         </div>
-        <div className="border w-8/10">
+        <div className=" w-9/11">
           {active === "overview" && <Overview />}
           {active === "profile" && <Profile />}
           {active === "order" && <Order />}

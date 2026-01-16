@@ -1,17 +1,17 @@
 import React from "react";
-import tranparent from "../assets/transparent.png";
+import transparent from "../assets/transparent.png"
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center">
+      <div className="bg-(--color-primary) px-4  flex justify-between items-center">
         <Link to={"/"}>
           <img
-            src={tranparent}
+            src={transparent}
             alt=""
-            className="h-12 w-20 object-cover invert-100"
+            className="h-18 w-48 object-cover "
           />
         </Link>
         <div className="flex gap-4">
