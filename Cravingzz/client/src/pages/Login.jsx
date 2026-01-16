@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -54,6 +56,7 @@ const Login = () => {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
       handleClearForm();
+      navigate("/user-dashboard");
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || "Unknown Error");
@@ -69,9 +72,7 @@ const Login = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Login</h1>
-            <p className="text-lg text-gray-600 italic">
-             Welcome Back!
-            </p>
+            <p className="text-lg text-gray-600 italic">Welcome Back!</p>
           </div>
 
           {/* Form Container */}
@@ -99,7 +100,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     value={formData.password}
-                    placeholder="Create Password"
+                    placeholder="Enter Password"
                     onChange={handleChange}
                     required
                     disabled={isLoading}
