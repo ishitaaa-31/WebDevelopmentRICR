@@ -17,28 +17,28 @@ const Header = () => {
         <div className="flex gap-4">
           <Link
             to={"/"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
           >
             Home
           </Link>
           <Link
             to={"/about"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
           >
             About
           </Link>
           <Link
             to={"/contact"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
           >
             Contact
           </Link>
         </div>
         <div className='flex gap-2'>
-          <button onClick={() =>navigate("/login")} className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded ">
+          <button onClick={() =>navigate("/login")} className="bg-(--color-secondary) text-(--color-text) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded ">
             Login
           </button>
-          <button onClick={() =>navigate("/register")} className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded ">
+          <button onClick={() =>navigate("/register")} className="bg-(--color-secondary) text-(--color-text) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded ">
             Register
           </button>
         </div>
