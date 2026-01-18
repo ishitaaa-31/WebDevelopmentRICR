@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="bg-(--color-primary) px-4  flex justify-between items-center">
+      <div className="bg-(--color-primary) px-2 py-0 flex justify-between items-center">
         <Link to={"/"}>
           <img
             src={transparent}
@@ -17,19 +17,19 @@ const Header = () => {
         <div className="flex gap-4">
           <Link
             to={"/"}
-            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent) font-semibold"
           >
             Home
           </Link>
           <Link
             to={"/about"}
-            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent) font-semibold"
           >
             About
           </Link>
           <Link
             to={"/contact"}
-            className="text-decoration-none text-(--color-text) hover:text-(--color-accent)"
+            className="text-decoration-none text-(--color-text) hover:text-(--color-accent) font-semibold"
           >
             Contact
           </Link>
