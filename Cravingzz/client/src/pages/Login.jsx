@@ -3,8 +3,10 @@ import toast from "react-hot-toast";
 import api from "../config/Api";
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const { setUser, setIsLogin } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -56,6 +58,9 @@ const Login = () => {
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
+      setUser(res.data.data);
+      setIsLogin(true);
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
       navigate("/user-dashboard");
     } catch (error) {
@@ -69,22 +74,23 @@ const Login = () => {
   return (
     <>
       <div className=" bg-(--color-background)  from-blue-50 to-indigo-100 py-6 px-4 relative h-screen w-full ">
-        
         <div className="  max-w-xl mx-auto items-center justify-center">
           {/* Header */}
 
           <div className="text-center mb-8">
-            <h1 className="text-4xl  text-(--color-text) font-bold mb-2">Login</h1>
+            <h1 className="text-4xl  text-(--color-text) font-bold mb-2">
+              Login
+            </h1>
             <p className="text-lg text-(--color-text) italic">Welcome Back!</p>
           </div>
 
           {/* Form Container */}
-          <div className=" relative  w-full  rounded-xl shadow-2xl overflow-hidden">
+          <div className=" relative  w-full   rounded-xl shadow-2xl overflow-hidden">
             <img
-          src={bg}
-          alt=""
-          className="absolute z-0 inset-0 w-full h-full object-cover"
-        />
+              src={bg}
+              alt=""
+              className="absolute z-0 inset-0 w-full h-full object-cover opacity-80"
+            />
             <form
               onSubmit={handleSubmit}
               onReset={handleClearForm}
@@ -101,7 +107,7 @@ const Login = () => {
                     onChange={handleChange}
                     required
                     disabled={isLoading}
-                    className="w-full h-fit px-4 py-3  bg-(--color-background)   rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                    className="w-full h-fit px-4 py-3 shadow  bg-(--color-background)   rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
 
                   <input
@@ -112,7 +118,7 @@ const Login = () => {
                     onChange={handleChange}
                     required
                     disabled={isLoading}
-                    className="w-full px-4 py-3  bg-(--color-background) rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                    className="w-full px-4 py-3   shadow bg-(--color-background) rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                 </div>
               </div>
