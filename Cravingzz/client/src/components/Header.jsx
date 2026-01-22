@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="bg-(--color-primary) px-2 py-0 flex justify-between items-center">
+      <div className="bg-(--color-primary) px-2 py-0 flex justify-between items-center z-99">
         <Link to={"/"}>
           <img src={transparent} alt="" className="h-18 w-48 object-cover " />
         </Link>
@@ -34,7 +34,12 @@ const Header = () => {
         </div>
         <div className="flex gap-2">
           {isLogin ? (
-            <span className="text-(--color-text) font-bold" >{user.fullName}</span>
+            <div
+              className="text-(--color-text) font-bold cursor-pointer pe-4"
+              onClick={() => navigate("/user-dashboard")}
+            >
+              {user.fullName}
+            </div>
           ) : (
             <>
               <button
