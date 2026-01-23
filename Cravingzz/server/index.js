@@ -6,12 +6,16 @@ import morgan from "morgan";
 import connectDB from "./src/config/db.js";
 import AuthRouter from "./src/routers/authRouter.js";
 import publicRouter from "./src/routers/publicRouter.js"
+import UserRouter from "./src/routers/userRouter.js"
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(cors({ origin: "http://localhost:5173", credentials:true}));
 app.use(express.json());
+app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/auth", AuthRouter);
+app.use ("/user",UserRouter)
 app.use("/public",publicRouter)
 app.get("/", (req, res) => {
   console.log("Server is working");
