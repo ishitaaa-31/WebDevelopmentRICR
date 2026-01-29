@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import EditProfileModal from "../../pages/dashboards/modals/EditProfileModal";
+import EditProfileModal from "./modals/EditProfileModal";
 const Profile = () => {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState("");
   const { user } = useAuth();

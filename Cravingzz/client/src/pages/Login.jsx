@@ -6,7 +6,7 @@ import bg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { setUser, setIsLogin } = useAuth();
+  const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -62,6 +62,27 @@ const Login = () => {
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
+      switch (res.data.data.role) {
+        case "manager": {
+          navigate("/resturant-dashboard");
+          break;
+        }
+        case "partner": {
+          navigate("/rider-dashboard");
+          break;
+        }
+        case "customer": {
+          navigate("/user-dashboard");
+          break;
+        }
+        case "admin": {
+          navigate("/admin-dashboard");
+          break;
+        }
+        default:
+          break;
+      }
+
       navigate("/user-dashboard");
     } catch (error) {
       console.log(error);

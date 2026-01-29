@@ -5,10 +5,10 @@ export const UserRegister = async (req, res, next) => {
   try {
     //accept data from frontend
     console.log(req.body);
-    const { fullName, email, mobileNumber, password } = req.body;
+    const { fullName, email, mobileNumber, password,role } = req.body;
     
 
-    if (!fullName || !email || !mobileNumber || !password) {
+    if (!fullName || !email || !mobileNumber || !password||!role) {
       const error = new Error("All fields required");
       error.statusCode = 400;
       return next(error);

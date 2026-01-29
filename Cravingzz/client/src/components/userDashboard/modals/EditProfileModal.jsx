@@ -2,9 +2,9 @@ import React from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useState } from "react";
-import Api from "../../../config/Api"
+import api from "../../../config/Api";
 const EditProfileModal = ({ onClose }) => {
-  const { user } = useAuth();
+  const { user,setUser } = useAuth();
   const [formData, setFormData] = useState({
     fullName: user.fullName || " ",
     mobileNumber: user.mobileNumber || "",
@@ -16,27 +16,32 @@ const EditProfileModal = ({ onClose }) => {
       [name]: value,
     }));
   };
-  const handleSubmit =  async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Updated Profile Data", formData);
-    onClose();
-    try{
-      const res = await Api.put("/user/Update")
-    }
-    catch(error){
+    console.log("form Submitted");
+    console.log(formData);
 
+    try {
+      const res = await api.put("/user/update", formData);
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+      // sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      onClose();
     }
   };
-   return (
+  return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
       <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto ">
         <div className="flex justify-end bg-indigo-50">
           <button
-          onClick={onClose}
-          className="bg-red-400 p-2 px-5 rounded-3xl text-white m-4 "
-           >
-          X
-        </button>
+            onClick={onClose}
+            className="bg-red-400 p-2 px-5 rounded-3xl text-white m-4 "
+          >
+            X
+          </button>
         </div>
 
         <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
