@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import Sidebar from "../../components/userDashboard/Sidebar";
 import Overview from "../../components/userDashboard/Overview";
 import Profile from "../../components/userDashboard/Profile";
 import Order from "../../components/userDashboard/Order";
 import Transaction from "../../components/userDashboard/Transaction";
 import HelpDesk from "../../components/userDashboard/HelpDesk";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const UserDashboard = () => {
+    const { role, isLogin } = useAuth();
   const [active, setActive] = useState("overview");
+  const navigate = useNavigate();
   const [isCollapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    if (!isLogin) {
+      navigate("/login");
+    }
+  });
   return (
     <>
       <div className="w-full flex  h-[90vh]">
