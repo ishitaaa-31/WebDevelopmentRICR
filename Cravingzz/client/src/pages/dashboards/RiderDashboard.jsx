@@ -6,4 +6,4 @@ const RiderDashboard = () => {
   )
 }
 
-export default RiderDashboard
+export default RiderDashboard;

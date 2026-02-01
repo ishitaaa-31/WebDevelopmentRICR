@@ -4,10 +4,12 @@ import api from "../config/Api";
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext";
+import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal"
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
+  const [isForgetPasswordModalOpen, setIsForgetPasswordModalOpen] =useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,31 +30,31 @@ const Login = () => {
     });
   };
 
-  const validate = () => {
-    let Error = {};
+  // const validate = () => {
+  //   let Error = {};
 
-    if (
-      !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email,
-      )
-    ) {
-      Error.email = "Use Proper Email Format";
-    }
+  //   if (
+  //     !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
+  //       formData.email,
+  //     )
+  //   ) {
+  //     Error.email = "Use Proper Email Format";
+  //   }
 
-    setValidationError(Error);
+  //   setValidationError(Error);
 
-    return Object.keys(Error).length > 0 ? false : true;
-  };
+  //   return Object.keys(Error).length > 0 ? false : true;
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!validate()) {
-      setIsLoading(false);
-      toast.error("Fill the Form Correctly");
-      return;
-    }
+    // if (!validate()) {
+    //   setIsLoading(false);
+    //   toast.error("Fill the Form Correctly");
+    //   return;
+    // }
     console.log(formData);
 
     try {
@@ -64,26 +66,28 @@ const Login = () => {
       handleClearForm();
       switch (res.data.data.role) {
         case "manager": {
-          navigate("/resturant-dashboard");
+          setRole("manager");
+          navigate("/restaurant-dashboard");
           break;
         }
         case "partner": {
+          setRole("partner");
           navigate("/rider-dashboard");
           break;
         }
         case "customer": {
+          setRole("customer");
           navigate("/user-dashboard");
           break;
         }
         case "admin": {
+          setRole("admin");
           navigate("/admin-dashboard");
           break;
         }
         default:
           break;
       }
-
-      navigate("/user-dashboard");
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || "Unknown Error");
@@ -110,7 +114,7 @@ const Login = () => {
             <img
               src={bg}
               alt=""
-              className="absolute z-0 inset-0 w-full h-full object-cover opacity-80"
+              className="absolute z-0 inset-0 w-full h-full object-cover opacity-70"
             />
             <form
               onSubmit={handleSubmit}
@@ -142,6 +146,7 @@ const Login = () => {
                     className="w-full px-4 py-3   shadow bg-(--color-background) rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                 </div>
+                <div className="">Forgot Password?</div>
               </div>
 
               {/* Submit Button */}
@@ -170,6 +175,9 @@ const Login = () => {
           </p>
         </div>
       </div>
+      {isForgetPasswordModalOpen && (
+        <ForgetPasswordModal onClose={(e) =>setIsForgetPasswordModalOpen(false)} />
+      )}
     </>
   );
 };
