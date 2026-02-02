@@ -111,7 +111,7 @@ const Login = () => {
           </div>
 
           {/* Form Container */}
-          <div className=" relative  w-full   rounded-xl shadow-2xl overflow-hidden">
+          <div className=" relative  w-full   rounded-xl shadow-2xl ">
             <img
               src={bg}
               alt=""
@@ -149,6 +149,7 @@ const Login = () => {
                 </div>
                 <div className="w-full flex justify-end">
                   <button
+                    type="button"
                     className="text-(--color-text) hover:text-(--color-secondary) cursor-pointer "
                     onClick={(e) => {
                       e.preventDefault();
@@ -188,7 +189,7 @@ const Login = () => {
       </div>
       {isForgetPasswordModalOpen && (
         <ForgetPasswordModal
-          onClose={(e) => setIsForgetPasswordModalOpen(false)}
+          onClose={() => setIsForgetPasswordModalOpen(false)}
         />
       )}
     </>

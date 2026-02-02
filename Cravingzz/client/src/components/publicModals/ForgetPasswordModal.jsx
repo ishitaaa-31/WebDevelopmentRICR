@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { BsArrowClockwise } from "react-icons/bs";
+import api from "../../config/Api";
+
 
 const ForgetPasswordModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -47,10 +51,10 @@ const ForgetPasswordModal = ({ onClose }) => {
   };
   return (
     <>
-      <div>
-        <div>
-          <div>
-            <h2>Reset Password</h2>
+      <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-99">
+        <div className="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+          <div className="flex justify-between px-6 py-4 border-b border-gray-300 items-center sticky top-0 bg-white">
+            <h2 className="text-xl font-semibold text-gray-800">Reset Password</h2>
             <button
               className="text-gray-600 hover:text-red-600 text-2xl transition"
               onClick={() => onClose()}
