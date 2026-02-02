@@ -65,6 +65,7 @@ const Login = () => {
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
+      console.log("User role from backend:", res.data.data.role);
       switch (res.data.data.role) {
         case "manager": {
           setRole("manager");
