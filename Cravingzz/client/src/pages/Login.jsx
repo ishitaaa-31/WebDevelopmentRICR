@@ -4,12 +4,13 @@ import api from "../config/Api";
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext";
-import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal"
+import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
-  const [isForgetPasswordModalOpen, setIsForgetPasswordModalOpen] =useState(false);
+  const [isForgetPasswordModalOpen, setIsForgetPasswordModalOpen] =
+    useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -146,7 +147,17 @@ const Login = () => {
                     className="w-full px-4 py-3   shadow bg-(--color-background) rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                 </div>
-                <div className="">Forgot Password?</div>
+                <div className="w-full flex justify-end">
+                  <button
+                    className="text-(--color-text) hover:text-(--color-secondary) cursor-pointer "
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsForgetPasswordModalOpen(true);
+                    }}
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
               </div>
 
               {/* Submit Button */}
@@ -176,7 +187,9 @@ const Login = () => {
         </div>
       </div>
       {isForgetPasswordModalOpen && (
-        <ForgetPasswordModal onClose={(e) =>setIsForgetPasswordModalOpen(false)} />
+        <ForgetPasswordModal
+          onClose={(e) => setIsForgetPasswordModalOpen(false)}
+        />
       )}
     </>
   );

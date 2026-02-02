@@ -1,4 +1,5 @@
-import User from "../models/userModel.js";
+import User from "../models/userModel.js";4
+import bcrypt from "bcrypt"
 export const UserUpdate = async (req, res, next) => {
   try {
     //logic here
@@ -43,6 +44,37 @@ export const UserUpdate = async (req, res, next) => {
       .json({ message: "User Updated Sucessfully", data: updatedUser });
 
     console.log("Updating the user");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const UserResetPassword = async (req, res, next) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const currentUser = req.user;
+
+    if (!oldPassword || !newPassword) {
+      const error = new Error("All feilds required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const isVerified = await bcrypt.compare(oldPassword, currentUser.password);
+    if (!isVerified) {
+      const error = new Error("Old Password didn't match");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(newPassword, salt);
+
+    currentUser.password = hashPassword;
+
+    await currentUser.save();
+
+    res.status(200).json({ message: "Password Reset Successful" });
   } catch (error) {
     next(error);
   }

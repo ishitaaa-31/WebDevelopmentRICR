@@ -3,6 +3,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useState } from "react";
 import api from "../../../config/Api";
+
 const EditProfileModal = ({ onClose }) => {
   const { user,setUser } = useAuth();
   const [formData, setFormData] = useState({
