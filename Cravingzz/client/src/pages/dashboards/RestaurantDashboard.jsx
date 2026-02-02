@@ -1,12 +1,12 @@
 import React, { useState ,useEffect} from "react";
-import Sidebar from "../../components/userDashboard/Sidebar";
-import Overview from "../../components/userDashboard/Overview";
-import Profile from "../../components/userDashboard/Profile";
-import Order from "../../components/userDashboard/Order";
-import Transaction from "../../components/userDashboard/Transaction";
-import HelpDesk from "../../components/userDashboard/HelpDesk";
+import Sidebar from "../../components/restaurantDashboard/Sidebar";
+import Profile from "../../components/restaurantDashboard/Profile";
+import Menu from "../../components/restaurantDashboard/Menu";
+import Transactions from "../../components/restaurantDashboard/Transactions";
+import OrdersManagement from "../../components/restaurantDashboard/OrdersManagement";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Overview from "../../components/restaurantDashboard/Overview";
 
 const RestaurantDashboard = () => {
   const { role, isLogin } = useAuth();
@@ -35,9 +35,10 @@ const RestaurantDashboard = () => {
         <div className={`${isCollapsed ? "w-58/60" : "w-48/60"} duration-300`}>
           {active === "overview" && <Overview />}
           {active === "profile" && <Profile />}
-          {active === "order" && <Order />}
-          {active === "transaction" && <Transaction />}
-          {active === "helpdesk" && <HelpDesk />}
+          {active === "orderManagement" && <OrdersManagement />}
+          {active === "transactions" && <Transactions />}
+         
+          {active === "menu" && <Menu />}
         </div>
       </div>
     </>
