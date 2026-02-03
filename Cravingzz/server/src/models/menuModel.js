@@ -6,7 +6,7 @@ const menuSchema = mongoose.Schema(
       ref: "User", //kis table se connected rahega ,user table se
       required: true,
     },
-    dishName: {
+    itemName: {
       type: String,
       required: true,
     },
@@ -29,6 +29,9 @@ const menuSchema = mongoose.Schema(
       required: true,
     },
     servingSize: {
+      type: String,
+    },
+    preparationTime: {
       type: String,
     },
     description: {
