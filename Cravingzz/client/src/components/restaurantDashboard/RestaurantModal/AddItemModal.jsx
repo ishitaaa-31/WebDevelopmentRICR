@@ -56,7 +56,7 @@ const AddItemModal = ({ onClose }) => {
       form_data.append("preparationTime", formData.preparationTime);
       form_data.append("availability", formData.availability);
       images.forEach((img) => {
-        form_data.append("itemImages", img);
+        form_data.append("itemImages", img); //isi name se backend me call hoga router me by multer object
       });
 
       //trasnfer MenuData to formData
