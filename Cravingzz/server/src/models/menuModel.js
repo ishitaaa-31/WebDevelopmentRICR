@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 const menuSchema = mongoose.Schema(
   {
-    restaurantID: {
-      type: mongoose.Schema.Types.ObjectId, // object ki kya id hai db me , primary key
-      ref: "User", //kis table se connected rahega ,user table se
+     resturantID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     itemName: {
@@ -44,7 +44,7 @@ const menuSchema = mongoose.Schema(
     },
     availability: {
       type: String,
-      enum: ["availabale", "unAvailable", "removed"],
+      enum: ["available", "unAvailable", "removed"],
       required: true,
       default: "available",
     },
@@ -61,3 +61,6 @@ const menuSchema = mongoose.Schema(
   },
   { timeStamp: true },
 );
+const Menu = mongoose.model("Menu", menuSchema);
+
+export default Menu;

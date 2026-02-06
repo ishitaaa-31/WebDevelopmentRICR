@@ -3,17 +3,17 @@ import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
 import toast from "react-hot-toast";
 
-const AddMenuItemModal = ({ onClose }) => {
+const EditItemModal = ({ onClose, selectedItem }) => {
   const { user } = useAuth();
   const [formData, setFormData] = useState({
-    itemName: "",
-    description: "",
-    price: "",
-    cuisine: "",
-    type: "",
-    preparationTime: "",
-    servingSize: "",
-    availability: true,
+    itemName: selectedItem?.itemName || "",
+    description: selectedItem?.description || "",
+    price: selectedItem?.price || "",
+    cuisine: selectedItem?.cuisine || "",
+    type: selectedItem?.type || "",
+    preparationTime: selectedItem?.preparationTime || "",
+    servingSize: selectedItem?.servingSize || "",
+    availability: selectedItem?.availability || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -35,8 +35,6 @@ const AddMenuItemModal = ({ onClose }) => {
   const handleImageChange = (e) => {
     const files = e.target.files;
     const fileArray = Array.from(files);
-    // console.log(files);
-    // console.log(fileArray);
     let temp = [];
     fileArray.forEach((img) => {
       let imgURL = URL.createObjectURL(img);
@@ -53,6 +51,7 @@ const AddMenuItemModal = ({ onClose }) => {
 
     try {
       const form_data = new FormData();
+    //   form_data.append("itemID", selectedItem._id);
       form_data.append("itemName", formData.itemName);
       form_data.append("description", formData.description);
       form_data.append("price", formData.price);
@@ -60,22 +59,23 @@ const AddMenuItemModal = ({ onClose }) => {
       form_data.append("cuisine", formData.cuisine);
       form_data.append("type", formData.type);
       form_data.append("preparationTime", formData.preparationTime);
-      form_data.append(
-        "availability",
-        formData.availability ? "available" : "unavailable",
-      );
+      form_data.append("availability", formData.availability);
+
       images.forEach((img) => {
         form_data.append("itemImages", img);
       });
 
-      //trasnfer MenuData to formData
-      const res = await api.post("/restaurant/addMenuItem", form_data);
+      const res = await api.put(
+        `/restaurant/updateMenuItem/${selectedItem._id}`,
+        form_data,
+      );
       toast.success(res.data.message);
-      console.log(res.data.data);
       setTimeout(handleClose, 1500);
     } catch (error) {
       console.log(error);
-      toast.error(error.response?.data?.message || "Failed to add menu item");
+      toast.error(
+        error.response?.data?.message || "Failed to update menu item",
+      );
     } finally {
       setLoading(false);
     }
@@ -86,18 +86,17 @@ const AddMenuItemModal = ({ onClose }) => {
       itemName: "",
       description: "",
       price: "",
-      category: "",
       cuisine: "",
       type: "",
       preparationTime: "",
-      availability: true,
+      servingSize: "",
+      availability: "",
     });
 
     setImagePreviews([]);
     setImages([]);
     setErrors("");
     setLoading(false);
-
     onClose();
   };
 
@@ -107,7 +106,7 @@ const AddMenuItemModal = ({ onClose }) => {
         <div className="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
           <div className="flex justify-between px-6 py-4 border-b border-gray-300 items-center sticky top-0 bg-white">
             <h2 className="text-xl font-semibold text-gray-800">
-              Add Menu Item
+              Edit Menu Item
             </h2>
             <button
               onClick={handleClose}
@@ -121,8 +120,11 @@ const AddMenuItemModal = ({ onClose }) => {
             {/* Item Image Section */}
             <div>
               <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b border-gray-200">
-                Item Image
+                Update Item Image
               </h3>
+              <p className="text-sm text-gray-600 mb-3">
+                Upload new images if you want to change them
+              </p>
               <div className="flex items-end gap-4">
                 <label
                   htmlFor="image"
@@ -256,7 +258,7 @@ const AddMenuItemModal = ({ onClose }) => {
                     className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       errors.servingSize ? "border-red-500" : "border-gray-300"
                     }`}
-                    placeholder="e.g., Main Course, Appetizer"
+                    placeholder="e.g., 2 Persons"
                   />
                   {errors.servingSize && (
                     <p className="text-red-600 text-xs mt-1">
@@ -321,7 +323,7 @@ const AddMenuItemModal = ({ onClose }) => {
                     value={formData.preparationTime}
                     onChange={handleInputChange}
                     min="0"
-                    className={`border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       errors.preparationTime
                         ? "border-red-500"
                         : "border-gray-300"
@@ -336,20 +338,17 @@ const AddMenuItemModal = ({ onClose }) => {
                 </div>
 
                 <div className="flex items-end gap-3 ">
-                  <input
-                    type="checkbox"
+                  <select
                     name="availability"
-                    checked={formData.availability}
+                    value={formData.availability}
                     onChange={handleInputChange}
-                    id="availability"
-                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                  />
-                  <label
-                    htmlFor="availability"
-                    className="text-sm font-medium text-gray-700 cursor-pointer"
+                    className="border w-full border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    Available
-                  </label>
+                    <option value="">Select Availability</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                    <option value="removed">Removed</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -371,10 +370,10 @@ const AddMenuItemModal = ({ onClose }) => {
               >
                 {loading ? (
                   <>
-                    <span className="animate-spin">⟳</span> Adding...
+                    <span className="animate-spin">⟳</span> Updating...
                   </>
                 ) : (
-                  "Add Menu Item"
+                  "Update Menu Item"
                 )}
               </button>
             </div>
@@ -385,4 +384,4 @@ const AddMenuItemModal = ({ onClose }) => {
   );
 };
 
-export default AddMenuItemModal;
+export default EditItemModal;

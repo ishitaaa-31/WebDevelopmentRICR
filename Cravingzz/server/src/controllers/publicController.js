@@ -1,4 +1,5 @@
 import Contact from "../models/publicModel.js";
+import User from "../models/userModel.js";
 export const NewContact = async (req, res, next) => {
   try {
     const { fullName, email, mobileNumber, message } = req.body;
@@ -18,5 +19,19 @@ export const NewContact = async (req, res, next) => {
     
   } catch (error) {
      next(error);
+  }
+};
+export const GetAllRestaurants = async (req, res, next) => {
+  try {
+    const restaurants = await User
+      .find({ role: "manager" })
+      .select("-password");
+
+    res.status(200).json({
+      message: "Restaurants fetched successfully",
+      data: restaurants,
+    });
+  } catch (error) {
+    next(error);
   }
 };

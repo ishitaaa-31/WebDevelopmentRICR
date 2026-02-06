@@ -45,104 +45,145 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
-        <div className="max-w-xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              Post your query here
-            </h1>
-            <p className="text-lg text-gray-600 italic">
-              We are here to help you...
-            </p>
-          </div>
-
-          {/* Form Container */}
-          <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
-            <form
-              onSubmit={handleSubmit}
-              onReset={handleClearForm}
-              className="p-8"
-            >
-              {/* Personal Information */}
-              <div className="mb-10">
-                <div className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      name="fullName"
-                      placeholder="Full Name"
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                  </div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
-                  <input
-                    type="tel"
-                    name="mobileNumber"
-                    placeholder="Mobile Number"
-                    maxLength="10"
-                    value={formData.mobileNumber}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
-
-                  <textarea
-                    type="text"
-                    name="message"
-                    placeholder="Type your Query"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
-                </div>
-              </div>
-
-              {/* Submit Button */}
-              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
-                <button
-                  type="reset"
-                  disabled={isLoading}
-                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                >
-                  Clear Form
-                </button>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
-                >
-                  {isLoading ? "Submitting" : "Submit"}
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {/* Footer Note */}
-          <p className="text-center text-gray-600 mt-8 text-sm">
-            All fields marked are mandatory. We respect your privacy.
+  <>
+    <div
+      className="min-h-screen py-6 px-4"
+      style={{
+        background: "linear-gradient(to bottom right, var(--color-background), #ffffff)",
+      }}
+    >
+      <div className="max-w-xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1
+            className="text-4xl font-bold mb-2"
+            style={{ color: "var(--color-text)" }}
+          >
+            Post your query here
+          </h1>
+          <p
+            className="text-lg italic"
+            style={{ color: "rgba(43, 29, 29, 0.7)" }}
+          >
+            We are here to help you...
           </p>
         </div>
+
+        {/* Form Container */}
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
+          <form
+            onSubmit={handleSubmit}
+            onReset={handleClearForm}
+            className="p-8"
+          >
+            {/* Inputs */}
+            <div className="mb-10 space-y-4">
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+                disabled={isLoading}
+                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                style={{
+                  borderColor: "rgba(43, 29, 29, 0.2)",
+                }}
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                disabled={isLoading}
+                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                style={{
+                  borderColor: "rgba(43, 29, 29, 0.2)",
+                }}
+              />
+
+              <input
+                type="tel"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+                maxLength="10"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                required
+                disabled={isLoading}
+                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                style={{
+                  borderColor: "rgba(43, 29, 29, 0.2)",
+                }}
+              />
+
+              <textarea
+                name="message"
+                placeholder="Type your Query"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                disabled={isLoading}
+                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                style={{
+                  borderColor: "rgba(43, 29, 29, 0.2)",
+                }}
+              />
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+              <button
+                type="reset"
+                disabled={isLoading}
+                className="flex-1 font-bold py-4 px-6 rounded-lg transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: "rgba(43, 29, 29, 0.1)",
+                  color: "var(--color-text)",
+                }}
+              >
+                Clear Form
+              </button>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="flex-1 font-bold py-4 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: "var(--color-primary)",
+                  color: "#1a1a1a",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "var(--color-primary-hover)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    "var(--color-primary)")
+                }
+              >
+                {isLoading ? "Submitting" : "Submit"}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Footer */}
+        <p
+          className="text-center mt-8 text-sm"
+          style={{ color: "rgba(43, 29, 29, 0.6)" }}
+        >
+          All fields marked are mandatory. We respect your privacy.
+        </p>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
+
 };
 
 export default Contact;
