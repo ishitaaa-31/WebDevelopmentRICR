@@ -51,8 +51,8 @@ export const GetRetaurantMenuData = async (req, res, next) => {
       resturantID: id,
     })
       .sort({ updatedAt: -1 })
-      .skip(1)
-      .limit(2)
+      .skip(0)
+      .limit(6)
       .populate("resturantID");
 
     res

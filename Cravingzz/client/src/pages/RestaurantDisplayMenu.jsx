@@ -29,15 +29,17 @@ const RestaurantDisplayMenu = () => {
     fetchData();
   }, [id]);
 
-  // Prepare images array for the image strip (below header or photos tab)
-  const images = menuItems
-    .map((item) => (item.images?.length > 0 ? item.images[0] : null))
+  // Prepare all menu images for Photos tab
+  const menuImages = menuItems
+    .flatMap((item) => item.images?.map((img) => img.url) || [])
     .filter(Boolean);
 
-  // Fallback to restaurant photo if no menu images exist
-  if (images.length === 0 && restaurant?.photo) {
-    images.push(restaurant.photo);
-  }
+  // Header images strip (if restaurant has photos array, else fallback to restaurant.photo.url)
+  const headerImages = restaurant?.photos?.length
+    ? restaurant.photos.map((img) => img.url)
+    : restaurant?.photo?.url
+    ? [restaurant.photo.url]
+    : [];
 
   return (
     <div className="max-w-6xl mx-auto px-4 pb-10">
@@ -55,21 +57,19 @@ const RestaurantDisplayMenu = () => {
       )}
 
       {/* ================= IMAGE STRIP BELOW HEADER ================= */}
-      <div className="grid grid-cols-4 gap-2 mt-6">
-        {images.length > 0 ? (
-          images.map((img, i) => (
+      {headerImages.length > 0 && (
+        <div className="grid grid-cols-4 gap-2 mt-6">
+          {headerImages.map((img, i) => (
             <div key={i} className="h-40 rounded overflow-hidden">
               <img
-                src={img.url}
-                alt={`Image ${i + 1}`}
+                src={img}
+                alt={`Restaurant Image ${i + 1}`}
                 className="w-full h-full object-cover"
               />
             </div>
-          ))
-        ) : (
-          <div className="h-40 bg-gray-200 rounded col-span-4"></div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* ================= TABS ================= */}
       <div className="flex gap-6 border-b mt-8 text-gray-600 sticky top-0 bg-white z-10">
@@ -112,8 +112,7 @@ const RestaurantDisplayMenu = () => {
           <div className="w-full md:w-3/4">
             {menuItems.length > 0 ? (
               menuItems.map((item) => {
-                // Only show menu item images here; no fallback to restaurant photo
-                const itemImage = item.images?.length > 0 ? item.images[0].url : null;
+                const itemImage = item.images?.[0]?.url || null;
 
                 return (
                   <div
@@ -134,14 +133,17 @@ const RestaurantDisplayMenu = () => {
 
                     {/* RIGHT – MENU ITEM IMAGE */}
                     <div className="relative w-32 flex justify-center">
-                      {itemImage && (
+                      {itemImage ? (
                         <img
                           src={itemImage}
                           alt={item.itemName}
                           className="w-32 h-24 object-cover rounded"
                         />
+                      ) : (
+                        <div className="w-32 h-24 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs">
+                          No Image
+                        </div>
                       )}
-
                       <button className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white border px-6 py-1 text-green-600 font-medium rounded shadow">
                         ADD
                       </button>
@@ -164,12 +166,12 @@ const RestaurantDisplayMenu = () => {
       {/* PHOTOS */}
       {activeTab === "photos" && (
         <div className="grid grid-cols-3 gap-4 mt-6">
-          {images.length > 0 ? (
-            images.map((img, i) => (
+          {menuImages.length > 0 ? (
+            menuImages.map((imgUrl, i) => (
               <div key={i} className="h-40 rounded overflow-hidden">
                 <img
-                  src={img.url}
-                  alt={`Photo ${i + 1}`}
+                  src={imgUrl}
+                  alt={`Menu Photo ${i + 1}`}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -189,3 +191,4 @@ const RestaurantDisplayMenu = () => {
 };
 
 export default RestaurantDisplayMenu;
+
