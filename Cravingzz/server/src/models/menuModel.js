@@ -48,16 +48,19 @@ const menuSchema = mongoose.Schema(
       required: true,
       default: "available",
     },
-    image: {
-      url: {
-        type: String,
-        default: "",
-      },
-      publicID: {
-        type: String,
-        default: "",
-      },
+    images: [
+  {
+    url: {
+      type: String,
+      default: "",
     },
+    publicID: {
+      type: String,
+      default: "",
+    },
+  },
+],
+
   },
   { timeStamp: true },
 );
