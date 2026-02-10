@@ -11,6 +11,7 @@ const OrderNow = () => {
     setLoading(true);
     try {
       const res = await api.get("/public/allRestaurants");
+         console.log("All Restaurants API Response:", res.data.data);
       setRestaurants(res.data.data);
     } catch (error) {
       console.log(error);
@@ -34,43 +35,65 @@ const OrderNow = () => {
 
   return (
     <>
-      <div className="bg-gray-100 p-3 h-screen">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold text-gray-800">Order Now</h1>
+      <div className="bg-gray-50 min-h-screen p-6">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-extrabold text-gray-800">
+            Order Now 🍽️
+          </h1>
           <p className="text-gray-600 mt-2">
-            Browse our menu and place your order now!
+            Discover great food near you and order instantly
           </p>
         </div>
 
-        {restaurants ? (
-          <div className="grid grid-cols-4 gap-3">
+        {/* Cards */}
+        {restaurants?.length ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {restaurants.map((restaurant, idx) => (
               <div
                 key={idx}
-                className="rounded h-100 hover:shadow-lg p-3"
-                onClick={() => {
-                  handleResturantClick(restaurant._id);
-                }}
+                onClick={() => handleResturantClick(restaurant._id)}
+                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group"
               >
-                <div>{restaurant.restaurantName}</div>
-                <div className="flex gap-2">
-                  {restaurant.cuisine
-                    .split(", ")
-                    .slice(0, 2)
-                    .map((cusine, idx) => (
-                      <span
-                        key={idx}
-                        className="py-1 px-2 bg-amber-200 rounded-2xl capitalize"
-                      >
-                        {cusine.toLowerCase()}
-                      </span>
-                    ))}
+                {/* Image */}
+                <div className="h-40 bg-gray-200 overflow-hidden">
+                  <img
+                    src={
+                      restaurant.photo?.url ||
+                      "https://source.unsplash.com/400x300/?restaurant,food"
+                    }
+                    alt={restaurant.restaurantName}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-4">
+                  <h2 className="text-lg font-semibold text-gray-800 truncate">
+                    {restaurant.restaurantName}
+                  </h2>
+
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {restaurant.cuisine
+                      .split(",")
+                      .slice(0, 3)
+                      .map((cuisine, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs px-3 py-1 bg-amber-100 text-amber-700 rounded-full capitalize"
+                        >
+                          {cuisine.toLowerCase()}
+                        </span>
+                      ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div></div>
+          <div className="text-center text-gray-500 mt-10">
+            No restaurants available 🍔
+          </div>
         )}
       </div>
     </>
