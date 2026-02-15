@@ -42,152 +42,174 @@ const RestaurantDisplayMenu = () => {
     : [];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 pb-10">
-      {/* ================= RESTAURANT HEADER ================= */}
-      {restaurant && (
-        <div className="mt-6">
-          <h1 className="text-3xl font-semibold">{restaurant.restaurantName}</h1>
-          <p className="text-gray-600 mt-1">{restaurant.cuisine}</p>
-          <p className="text-gray-500 text-sm">
-            {restaurant.address}, {restaurant.city}
-          </p>
-          <p className="text-sm mt-1">📞 {restaurant.mobileNumber}</p>
-          <span className="inline-block mt-2 text-green-600 font-medium">Open now</span>
-        </div>
-      )}
+  <div className="max-w-6xl mx-auto px-4 pb-10" style={{ background: "var(--color-background)", color: "var(--color-text)" }}>
 
-      {/* ================= IMAGE STRIP BELOW HEADER ================= */}
-      {headerImages.length > 0 && (
-        <div className="grid grid-cols-4 gap-2 mt-6">
-          {headerImages.map((img, i) => (
-            <div key={i} className="h-40 rounded overflow-hidden">
-              <img
-                src={img}
-                alt={`Restaurant Image ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      )}
+    {/* ================= RESTAURANT HEADER ================= */}
+    {restaurant && (
+      <div className="mt-6">
+        <h1 className="text-3xl font-bold tracking-wide">
+          {restaurant.restaurantName}
+        </h1>
 
-      {/* ================= TABS ================= */}
-      <div className="flex gap-6 border-b mt-8 text-gray-600 sticky top-0 bg-white z-10">
-        {[
-          { key: "overview", label: "Overview" },
-          { key: "order", label: "Order Online" },
-          { key: "reviews", label: "Reviews" },
-          { key: "photos", label: "Photos" },
-          { key: "menu", label: "Menu" },
-        ].map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`pb-3 ${
-              activeTab === tab.key ? "border-b-2 border-red-500 text-red-500" : ""
-            }`}
-          >
-            {tab.label}
-          </button>
+        <p className="mt-1 font-medium" style={{ color: "var(--color-secondary)" }}>
+          {restaurant.cuisine}
+        </p>
+
+        <p className="text-sm opacity-80 mt-1">
+          {restaurant.address}, {restaurant.city}
+        </p>
+
+        <p className="text-sm mt-1">📞 {restaurant.mobileNumber}</p>
+
+        <span
+          className="inline-block mt-3 px-3 py-1 text-sm rounded-full font-medium"
+          style={{
+            background: "rgba(255,183,3,0.15)",
+            color: "var(--color-primary)",
+          }}
+        >
+          Open now
+        </span>
+      </div>
+    )}
+
+    {/* ================= IMAGE STRIP BELOW HEADER ================= */}
+    {headerImages.length > 0 && (
+      <div className="grid grid-cols-4 gap-3 mt-6">
+        {headerImages.map((img, i) => (
+          <div key={i} className="h-40 rounded-xl overflow-hidden shadow-md hover:scale-[1.03] transition">
+            <img src={img} alt={`Restaurant Image ${i + 1}`} className="w-full h-full object-cover" />
+          </div>
         ))}
       </div>
+    )}
 
-      {/* ================= TAB CONTENT ================= */}
+    {/* ================= TABS ================= */}
+    <div className="flex gap-6 border-b mt-8 sticky top-0 bg-[var(--color-background)] z-10 backdrop-blur-md">
+      {[
+        { key: "overview", label: "Overview" },
+        { key: "order", label: "Order Online" },
+        { key: "reviews", label: "Reviews" },
+        { key: "photos", label: "Photos" },
+        { key: "menu", label: "Menu" },
+      ].map((tab) => (
+        <button
+          key={tab.key}
+          onClick={() => setActiveTab(tab.key)}
+          className="pb-3 font-medium transition"
+          style={
+            activeTab === tab.key
+              ? {
+                  borderBottom: "3px solid var(--color-secondary)",
+                  color: "var(--color-secondary)",
+                }
+              : { opacity: 0.7 }
+          }
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
 
-      {/* OVERVIEW */}
-      {activeTab === "overview" && restaurant && (
-        <div className="mt-6 text-gray-700 space-y-2">
-          <p><strong>Restaurant:</strong> {restaurant.restaurantName}</p>
-          <p><strong>Cuisine:</strong> {restaurant.cuisine}</p>
-          <p><strong>Address:</strong> {restaurant.address}</p>
-          <p><strong>City:</strong> {restaurant.city}</p>
-          <p><strong>Contact:</strong> {restaurant.mobileNumber}</p>
-        </div>
-      )}
+    {/* ================= OVERVIEW ================= */}
+    {activeTab === "overview" && restaurant && (
+      <div className="mt-6 space-y-2 leading-relaxed">
+        <p><strong>Restaurant:</strong> {restaurant.restaurantName}</p>
+        <p><strong>Cuisine:</strong> {restaurant.cuisine}</p>
+        <p><strong>Address:</strong> {restaurant.address}</p>
+        <p><strong>City:</strong> {restaurant.city}</p>
+        <p><strong>Contact:</strong> {restaurant.mobileNumber}</p>
+      </div>
+    )}
 
-      {/* ORDER ONLINE */}
-      {activeTab === "order" && (
-        <div className="flex mt-6 gap-6">
-          <div className="w-1/4 hidden md:block"></div>
-          <div className="w-full md:w-3/4">
-            {menuItems.length > 0 ? (
-              menuItems.map((item) => {
-                const itemImage = item.images?.[0]?.url || null;
+    {/* ================= ORDER ONLINE ================= */}
+    {activeTab === "order" && (
+      <div className="flex mt-6 gap-6">
+        <div className="w-1/4 hidden md:block"></div>
 
-                return (
-                  <div
-                    key={item._id}
-                    className="flex justify-between gap-4 py-5 border-b"
-                  >
-                    {/* LEFT */}
-                    <div className="flex-1">
-                      <span
-                        className={`inline-block w-3 h-3 rounded-full mb-2 ${
-                          item.type === "veg" ? "bg-green-600" : "bg-red-600"
-                        }`}
-                      ></span>
-                      <h3 className="text-lg font-medium">{item.itemName}</h3>
-                      <p className="text-sm text-gray-500 mt-1">{item.description}</p>
-                      <p className="mt-2 font-medium">₹{item.price}</p>
-                    </div>
+        <div className="w-full md:w-3/4">
+          {menuItems.length > 0 ? (
+            menuItems.map((item) => {
+              const itemImage = item.images?.[0]?.url || null;
 
-                    {/* RIGHT – MENU ITEM IMAGE */}
-                    <div className="relative w-32 flex justify-center">
-                      {itemImage ? (
-                        <img
-                          src={itemImage}
-                          alt={item.itemName}
-                          className="w-32 h-24 object-cover rounded"
-                        />
-                      ) : (
-                        <div className="w-32 h-24 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs">
-                          No Image
-                        </div>
-                      )}
-                      <button className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white border px-6 py-1 text-green-600 font-medium rounded shadow">
-                        ADD
-                      </button>
-                    </div>
+              return (
+                <div key={item._id} className="flex justify-between gap-4 py-6 border-b border-[rgba(0,0,0,0.06)]">
+
+                  {/* LEFT */}
+                  <div className="flex-1">
+                    <span
+                      className="inline-block w-3 h-3 rounded-full mb-2"
+                      style={{ background: item.type === "veg" ? "green" : "red" }}
+                    ></span>
+
+                    <h3 className="text-lg font-semibold">{item.itemName}</h3>
+
+                    <p className="text-sm opacity-70 mt-1">{item.description}</p>
+                    <p className="text-sm opacity-70 mt-1">Serving Size: {item.servingSize} person</p>
+                    <p className="text-sm opacity-70 mt-1">Preparation Time: {item.preparationTime} Minutes</p>
+
+                    <p className="mt-2 font-semibold text-lg" style={{ color: "var(--color-secondary)" }}>
+                      ₹{item.price}
+                    </p>
                   </div>
-                );
-              })
-            ) : (
-              <p className="text-center text-gray-500 mt-10">No menu items available</p>
-            )}
-          </div>
-        </div>
-      )}
 
-      {/* REVIEWS */}
-      {activeTab === "reviews" && (
-        <div className="mt-6 text-gray-500">No reviews yet.</div>
-      )}
+                  {/* RIGHT IMAGE */}
+                  <div className="relative w-32 flex justify-center">
+                    {itemImage ? (
+                      <img src={itemImage} alt={item.itemName} className="w-32 h-24 object-cover rounded-lg shadow-md" />
+                    ) : (
+                      <div className="w-32 h-24 bg-gray-200 rounded flex items-center justify-center text-xs">
+                        No Image
+                      </div>
+                    )}
 
-      {/* PHOTOS */}
-      {activeTab === "photos" && (
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          {menuImages.length > 0 ? (
-            menuImages.map((imgUrl, i) => (
-              <div key={i} className="h-40 rounded overflow-hidden">
-                <img
-                  src={imgUrl}
-                  alt={`Menu Photo ${i + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))
+                    <button
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-1 font-semibold rounded-full shadow-md transition"
+                      style={{
+                        background: "var(--color-secondary)",
+                        color: "white",
+                      }}
+                    >
+                      ADD
+                    </button>
+                  </div>
+                </div>
+              );
+            })
           ) : (
-            <div className="h-40 bg-gray-200 rounded col-span-3"></div>
+            <p className="text-center opacity-60 mt-10">No menu items available</p>
           )}
         </div>
-      )}
+      </div>
+    )}
 
-      {/* MENU TAB */}
-      {activeTab === "menu" && (
-        <div className="mt-6 text-gray-500">Menu images will be added soon.</div>
-      )}
-    </div>
-  );
+    {/* REVIEWS */}
+    {activeTab === "reviews" && (
+      <div className="mt-6 opacity-70">No reviews yet.</div>
+    )}
+
+    {/* PHOTOS */}
+    {activeTab === "photos" && (
+      <div className="grid grid-cols-3 gap-4 mt-6">
+        {menuImages.length > 0 ? (
+          menuImages.map((imgUrl, i) => (
+            <div key={i} className="h-40 rounded-xl overflow-hidden shadow hover:scale-[1.03] transition">
+              <img src={imgUrl} alt={`Menu Photo ${i + 1}`} className="w-full h-full object-cover" />
+            </div>
+          ))
+        ) : (
+          <div className="h-40 bg-gray-200 rounded col-span-3"></div>
+        )}
+      </div>
+    )}
+
+    {/* MENU TAB */}
+    {activeTab === "menu" && (
+      <div className="mt-6 opacity-70">Menu images will be added soon.</div>
+    )}
+  </div>
+);
+
 };
 
 export default RestaurantDisplayMenu;

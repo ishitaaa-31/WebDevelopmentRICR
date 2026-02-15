@@ -32,72 +32,99 @@ const OrderNow = () => {
   };
 
   console.log(restaurants);
+return (
+  <>
+    <div
+      className="min-h-screen p-8"
+      style={{ backgroundColor: "var(--color-background)" }}
+    >
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h1
+          className="text-5xl font-extrabold mb-3"
+          style={{ color: "var(--color-text)" }}
+        >
+          Order Now 🍽️
+        </h1>
+        <p className="text-lg" style={{ color: "var(--color-text)", opacity: 0.7 }}>
+          Discover great food near you and order instantly
+        </p>
 
-  return (
-    <>
-      <div className="bg-gray-50 min-h-screen p-6">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-800">
-            Order Now 🍽️
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Discover great food near you and order instantly
-          </p>
-        </div>
+        {/* Decorative Line */}
+        <div
+          className="w-24 h-1 mx-auto mt-6 rounded-full"
+          style={{ backgroundColor: "var(--color-primary)" }}
+        />
+      </div>
 
-        {/* Cards */}
-        {restaurants?.length ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {restaurants.map((restaurant, idx) => (
-              <div
-                key={idx}
-                onClick={() => handleResturantClick(restaurant._id)}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group"
-              >
-                {/* Image */}
-                <div className="h-40 bg-gray-200 overflow-hidden">
-                  <img
-                    src={
-                      restaurant.photo?.url ||
-                      "https://source.unsplash.com/400x300/?restaurant,food"
-                    }
-                    alt={restaurant.restaurantName}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+      {/* Cards */}
+      {restaurants?.length ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {restaurants.map((restaurant, idx) => (
+            <div
+              key={idx}
+              onClick={() => handleResturantClick(restaurant._id)}
+              className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group"
+            >
+              {/* Image */}
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={
+                    restaurant.photo?.url ||
+                    "https://source.unsplash.com/400x300/?restaurant,food"
+                  }
+                  alt={restaurant.restaurantName}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
 
-                {/* Content */}
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold text-gray-800 truncate">
-                    {restaurant.restaurantName}
-                  </h2>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition duration-300" />
 
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {restaurant.cuisine
-                      .split(",")
-                      .slice(0, 3)
-                      .map((cuisine, idx) => (
-                        <span
-                          key={idx}
-                          className="text-xs px-3 py-1 bg-amber-100 text-amber-700 rounded-full capitalize"
-                        >
-                          {cuisine.toLowerCase()}
-                        </span>
-                      ))}
-                  </div>
+                
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                <h2
+                  className="text-xl font-bold truncate mb-3"
+                  style={{ color: "var(--color-text)" }}
+                >
+                  {restaurant.restaurantName}
+                </h2>
+
+                <div className="flex flex-wrap gap-2">
+                  {restaurant.cuisine
+                    .split(",")
+                    .slice(0, 3)
+                    .map((cuisine, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs px-3 py-1 rounded-full capitalize font-medium transition"
+                        style={{
+                          backgroundColor: "var(--color-primary)",
+                          color: "#fff",
+                        }}
+                      >
+                        {cuisine.toLowerCase()}
+                      </span>
+                    ))}
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center text-gray-500 mt-10">
-            No restaurants available 🍔
-          </div>
-        )}
-      </div>
-    </>
-  );
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div
+          className="text-center mt-16 text-xl"
+          style={{ color: "var(--color-text)", opacity: 0.6 }}
+        >
+          No restaurants available 🍔
+        </div>
+      )}
+    </div>
+  </>
+);
+
 };
 
 export default OrderNow;
