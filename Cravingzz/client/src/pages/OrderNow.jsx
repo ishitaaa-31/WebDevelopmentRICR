@@ -24,11 +24,12 @@ const OrderNow = () => {
   useEffect(() => {
     fetchAllRestaurant();
   }, []);
-  const handleResturantClick = (restaurantID) => {
+  const handleResturantClick = (restaurant) => {
     console.log("restaurant Clicked");
-    console.log("OrderNow Page", restaurantID);
+    console.log("OrderNow Page", restaurant);
 
-    navigate(`/restaurant/${restaurantID}`);
+   navigate("/restaurantMenu", { state: restaurant });
+;
   };
 
   console.log(restaurants);
@@ -63,7 +64,7 @@ return (
           {restaurants.map((restaurant, idx) => (
             <div
               key={idx}
-              onClick={() => handleResturantClick(restaurant._id)}
+              onClick={() => handleResturantClick(restaurant)}
               className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group"
             >
               {/* Image */}
