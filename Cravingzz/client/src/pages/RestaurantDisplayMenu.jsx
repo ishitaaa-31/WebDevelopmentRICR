@@ -52,11 +52,11 @@ const RestaurantDisplayMenu = () => {
       toast.error("Failed to load restaurant");
     }
   };
-  const handleClearCart=()=>{
+  const handleClearCart = () => {
     localStorage.removeItem("cart");
-    setCart([]);
+    setCart();
     setCartFlag([]);
-  }
+  };
 
   // ---------- CART LOGIC ----------
   const handleAddToCart = (NewItem) => {
@@ -111,8 +111,13 @@ const RestaurantDisplayMenu = () => {
       : [];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 pb-28" style={{ background: "var(--color-background)", color: "var(--color-text)" }}>
-
+    <div
+      className="max-w-6xl mx-auto px-4 pb-28"
+      style={{
+        background: "var(--color-background)",
+        color: "var(--color-text)",
+      }}
+    >
       {/* ================= RESTAURANT HEADER ================= */}
       {restaurant && (
         <div className="mt-6">
@@ -120,7 +125,10 @@ const RestaurantDisplayMenu = () => {
             {restaurant.restaurantName}
           </h1>
 
-          <p className="mt-1 font-medium" style={{ color: "var(--color-secondary)" }}>
+          <p
+            className="mt-1 font-medium"
+            style={{ color: "var(--color-secondary)" }}
+          >
             {restaurant.cuisine}
           </p>
 
@@ -146,8 +154,15 @@ const RestaurantDisplayMenu = () => {
       {headerImages.length > 0 && (
         <div className="grid grid-cols-4 gap-3 mt-6">
           {headerImages.map((img, i) => (
-            <div key={i} className="h-40 rounded-xl overflow-hidden shadow-md hover:scale-[1.03] transition">
-              <img src={img} alt={`Restaurant Image ${i + 1}`} className="w-full h-full object-cover" />
+            <div
+              key={i}
+              className="h-40 rounded-xl overflow-hidden shadow-md hover:scale-[1.03] transition"
+            >
+              <img
+                src={img}
+                alt={`Restaurant Image ${i + 1}`}
+                className="w-full h-full object-cover"
+              />
             </div>
           ))}
         </div>
@@ -183,11 +198,21 @@ const RestaurantDisplayMenu = () => {
       {/* ================= OVERVIEW ================= */}
       {activeTab === "overview" && restaurant && (
         <div className="mt-6 space-y-2 leading-relaxed">
-          <p><strong>Restaurant:</strong> {restaurant.restaurantName}</p>
-          <p><strong>Cuisine:</strong> {restaurant.cuisine}</p>
-          <p><strong>Address:</strong> {restaurant.address}</p>
-          <p><strong>City:</strong> {restaurant.city}</p>
-          <p><strong>Contact:</strong> {restaurant.mobileNumber}</p>
+          <p>
+            <strong>Restaurant:</strong> {restaurant.restaurantName}
+          </p>
+          <p>
+            <strong>Cuisine:</strong> {restaurant.cuisine}
+          </p>
+          <p>
+            <strong>Address:</strong> {restaurant.address}
+          </p>
+          <p>
+            <strong>City:</strong> {restaurant.city}
+          </p>
+          <p>
+            <strong>Contact:</strong> {restaurant.mobileNumber}
+          </p>
         </div>
       )}
 
@@ -202,22 +227,35 @@ const RestaurantDisplayMenu = () => {
                 const itemImage = item.images?.[0]?.url || null;
 
                 return (
-                  <div key={item._id} className="flex justify-between gap-4 py-6 border-b border-[rgba(0,0,0,0.06)]">
-
+                  <div
+                    key={item._id}
+                    className="flex justify-between gap-4 py-6 border-b border-[rgba(0,0,0,0.06)]"
+                  >
                     {/* LEFT */}
                     <div className="flex-1">
                       <span
                         className="inline-block w-3 h-3 rounded-full mb-2"
-                        style={{ background: item.type === "veg" ? "green" : "red" }}
+                        style={{
+                          background: item.type === "veg" ? "green" : "red",
+                        }}
                       ></span>
 
                       <h3 className="text-lg font-semibold">{item.itemName}</h3>
 
-                      <p className="text-sm opacity-70 mt-1">{item.description}</p>
-                      <p className="text-sm opacity-70 mt-1">Serving Size: {item.servingSize} person</p>
-                      <p className="text-sm opacity-70 mt-1">Preparation Time: {item.preparationTime} Minutes</p>
+                      <p className="text-sm opacity-70 mt-1">
+                        {item.description}
+                      </p>
+                      <p className="text-sm opacity-70 mt-1">
+                        Serving Size: {item.servingSize} person
+                      </p>
+                      <p className="text-sm opacity-70 mt-1">
+                        Preparation Time: {item.preparationTime} Minutes
+                      </p>
 
-                      <p className="mt-2 font-semibold text-lg" style={{ color: "var(--color-secondary)" }}>
+                      <p
+                        className="mt-2 font-semibold text-lg"
+                        style={{ color: "var(--color-secondary)" }}
+                      >
                         ₹{item.price}
                       </p>
                     </div>
@@ -225,7 +263,11 @@ const RestaurantDisplayMenu = () => {
                     {/* RIGHT IMAGE */}
                     <div className="relative w-32 flex justify-center">
                       {itemImage ? (
-                        <img src={itemImage} alt={item.itemName} className="w-32 h-24 object-cover rounded-lg shadow-md" />
+                        <img
+                          src={itemImage}
+                          alt={item.itemName}
+                          className="w-32 h-24 object-cover rounded-lg shadow-md"
+                        />
                       ) : (
                         <div className="w-32 h-24 bg-gray-200 rounded flex items-center justify-center text-xs">
                           No Image
@@ -238,7 +280,9 @@ const RestaurantDisplayMenu = () => {
                         disabled={cartFlag.includes(item._id)}
                         className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-7 py-1.5 font-semibold rounded-full shadow-md transition-all duration-200"
                         style={{
-                          background: cartFlag.includes(item._id) ? "#ccc" : "var(--color-secondary)",
+                          background: cartFlag.includes(item._id)
+                            ? "#ccc"
+                            : "var(--color-secondary)",
                           color: cartFlag.includes(item._id) ? "#666" : "white",
                         }}
                       >
@@ -249,7 +293,9 @@ const RestaurantDisplayMenu = () => {
                 );
               })
             ) : (
-              <p className="text-center opacity-60 mt-10">No menu items available</p>
+              <p className="text-center opacity-60 mt-10">
+                No menu items available
+              </p>
             )}
           </div>
         </div>
@@ -265,8 +311,15 @@ const RestaurantDisplayMenu = () => {
         <div className="grid grid-cols-3 gap-4 mt-6">
           {menuImages.length > 0 ? (
             menuImages.map((imgUrl, i) => (
-              <div key={i} className="h-40 rounded-xl overflow-hidden shadow hover:scale-[1.03] transition">
-                <img src={imgUrl} alt={`Menu Photo ${i + 1}`} className="w-full h-full object-cover" />
+              <div
+                key={i}
+                className="h-40 rounded-xl overflow-hidden shadow hover:scale-[1.03] transition"
+              >
+                <img
+                  src={imgUrl}
+                  alt={`Menu Photo ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))
           ) : (
@@ -280,23 +333,44 @@ const RestaurantDisplayMenu = () => {
         <div className="mt-6 opacity-70">Menu images will be added soon.</div>
       )}
 
-      {/* FLOATING CHECKOUT BAR */}
-      {cart && cart.cartItem && cart.cartItem.length > 0 && activeTab === "order" && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[min(700px,92%)] bg-(--color-secondary) text-white rounded-2xl shadow-2xl px-5 py-4 flex items-center justify-between">
-          <div className="font-semibold">Items: {cart.cartItem.length} | ₹{cart.cartValue}</div>
-          <button
-            className="bg-white text-(--color-secondary) px-5 py-2 rounded-xl font-semibold hover:scale-105 transition"
-            onClick={handleCheckout}
-          >
-            Proceed to Checkout
-          </button>
-        </div>
-      )}
+      {cart && cart.cartItem.length > 0 && (
+  <div className="fixed bottom-5 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-50">
+    <div className="bg-(--color-secondary-hover) rounded-3xl shadow-lg flex items-center justify-between py-3 px-6 border border-(--color-secondary)">
+
+      {/* Left: Items count and total */}
+      <div className="flex items-center gap-4">
+        <span className="bg-(--color-primary) text-white px-3 py-1 rounded-full font-semibold text-sm">
+          {cart.cartItem.length} {cart.cartItem.length === 1 ? "item" : "items"}
+        </span>
+        <span className="text-(--color-text) font-semibold text-sm">
+          ₹ {cart.cartValue}
+        </span>
+      </div>
+
+      {/* Right: Buttons */}
+      <div className="flex items-center gap-3">
+        {/* Clear Cart */}
+        <button
+          onClick={handleClearCart}
+          className="bg-(--color-danger) hover:bg-(--color-danger-dark) text-white px-4 py-2 rounded-full text-sm font-medium transition shadow-sm"
+        >
+          Clear
+        </button>
+
+        {/* Checkout */}
+        <button
+          onClick={handleCheckout}
+          className="bg-(--color-primary) hover:bg-(--color-primary-dark) text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
     </div>
   );
 };
 
 export default RestaurantDisplayMenu;
-
-
