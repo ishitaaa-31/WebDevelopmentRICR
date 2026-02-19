@@ -228,7 +228,7 @@ const CheckoutPage = () => {
                 className="text-2xl font-bold mb-6"
                 style={{ color: "var(--color-text)" }}
               >
-                Delivery Address
+                Delivery Address 
               </h2>
 
               <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
