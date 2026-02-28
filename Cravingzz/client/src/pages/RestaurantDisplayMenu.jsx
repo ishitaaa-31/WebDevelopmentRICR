@@ -61,7 +61,7 @@ const RestaurantDisplayMenu = () => {
   // ---------- CART LOGIC ----------
   const handleAddToCart = (NewItem) => {
     if (cart) {
-      if (cart.resturantID === NewItem.resturantID._id) {
+     if (cart.resturantID === NewItem.resturantID) {
         setCart((prev) => ({
           ...prev,
           cartItem: [...prev.cartItem, { ...NewItem, quantity: 1 }],
@@ -73,7 +73,7 @@ const RestaurantDisplayMenu = () => {
       }
     } else {
       setCart({
-        resturantID: NewItem.resturantID._id,
+      resturantID: NewItem.resturantID,
         cartItem: [{ ...NewItem, quantity: 1 }],
         cartValue: Number(NewItem.price),
       });

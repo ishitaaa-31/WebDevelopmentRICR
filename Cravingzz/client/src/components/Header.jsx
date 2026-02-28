@@ -14,7 +14,7 @@ const Header = () => {
         break;
       }
       case "partner": {
-        navigate("/rider-dashboard");
+        navigate("/user-dashboard", { state: { tab: "overview" } });
         break;
       }
       case "customer": {
