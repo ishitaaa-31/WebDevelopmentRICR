@@ -7,6 +7,8 @@ import connectDB from "./src/config/db.js";
 import AuthRouter from "./src/routers/authRouter.js";
 import publicRouter from "./src/routers/publicRouter.js"
 import UserRouter from "./src/routers/userRouter.js"
+import { verifyRazorpayConnect } from "./src/config/razorpay.js";
+import RiderRouter from "./src/routers/riderRouter.js";
 import restaurantRouter from "./src/routers/restaurantRouter.js"
 import cookieParser from "cookie-parser";
 
@@ -18,6 +20,7 @@ app.use(morgan("dev"));
 app.use("/auth", AuthRouter);
 app.use ("/user",UserRouter)
 app.use("/public",publicRouter)
+app.use("/rider", RiderRouter);
 app.use("/restaurant",restaurantRouter)
 app.get("/", (req, res) => {
   console.log("Server is working");
@@ -33,3 +36,13 @@ app.listen(port, () => {
   console.log("Server started at port:", port);
   connectDB();
 });
+try {
+ const res = await verifyRazorpayConnect();
+  console.log("Razorpay connected",res);
+  
+  
+} catch (error) {
+  console.log("Error connecting razorpay",error);
+  
+  
+}

@@ -46,15 +46,9 @@ export const GetRetaurantMenuData = async (req, res, next) => {
       error.statusCode = 400;
       return next(error);
     }
-
-    const restaurantMenuData = await Menu.find({
+const restaurantMenuData = await Menu.find({
       resturantID: id,
-    })
-      .sort({ updatedAt: -1 })
-      .skip(0)
-      .limit(6)
-      .populate("resturantID");
-
+    }).sort({ updatedAt: -1 });
     res
       .status(200)
       .json({ message: "Menu fetched Sucessfully", data: restaurantMenuData });

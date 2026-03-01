@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import UserSideBar from "../../components/userDashboard/UserSideBar";
-import UserOverview from "../../components/userDashboard/userOverview";
-import UserProfile from "../../components/userDashboard/UserProfile";
-import UserOrders from "../../components/userDashboard/UserOrders";
-import UserTransactions from "../../components/userDashboard/userTransactions";
-import UserHelpDesk from "../../components/userDashboard/UserHelpDesk";
+import Sidebar from "../../components/restaurantDashboard/Sidebar";
+import Overview from "../../components/userDashboard/Overview";
+import Profile from "../../components/userDashboard/Profile";
+import Order from "../../components/userDashboard/Order";
+import Transaction from "../../components/userDashboard/Transaction";
+import HelpDesk from "../../components/userDashboard/HelpDesk";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -52,11 +52,11 @@ const UserDashboard = () => {
           />
         </div>
         <div className={`${isCollapsed ? "w-58/60" : "w-48/60"} duration-300`}>
-          {active === "overview" && <UserOverview />}
-          {active === "profile" && <UserProfile />}
-          {active === "orders" && <UserOrders />}
-          {active === "transactions" && <UserTransactions />}
-          {active === "helpdesk" && <UserHelpDesk />}
+          {active === "overview" && <Overview />}
+          {active === "profile" && <Profile />}
+          {active === "orders" && <Order />}
+          {active === "transactions" && <Transaction />}
+          {active === "helpdesk" && <HelpDesk />}
         </div>
       </div>
     </>
