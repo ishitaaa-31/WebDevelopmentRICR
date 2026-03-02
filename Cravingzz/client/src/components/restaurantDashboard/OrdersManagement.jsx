@@ -5,7 +5,7 @@ import Loading from "../Loading";
 import ViewReceivedOrder from "./RestaurantModal/ViewReceivedOrder";
 
 const RestaurantOrders = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);  ``
   const [orders, setOrders] = useState();
   const [refresh, setRefresh] = useState(true);
   const [isViewingOrder, setIsViewingOrder] = useState(false);

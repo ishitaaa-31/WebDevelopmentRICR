@@ -11,6 +11,7 @@ import UserDashboard from "./pages/dashboards/UserDashboard";
 import RestaurantDashboard from "./pages/dashboards/RestaurantDashboard";
 import RiderDashboard from "./pages/dashboards/RiderDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import OrderNow from "./pages/OrderNow";
 import CheckoutPage from "./pages/CheckoutPage";
 import RestaurantDisplayMenu from "./pages/RestaurantDisplayMenu";
@@ -36,8 +37,9 @@ const App = () => {
           />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/order-now" element={<OrderNow />} />
-     <Route path="/restaurantMenu" element={<RestaurantDisplayMenu />} />
+          <Route path="/restaurantMenu" element={<RestaurantDisplayMenu />} />
           <Route path="/checkout-page" element={<CheckoutPage />} />
+          <Route path="/paymentSuccess" element={<PaymentSuccessPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

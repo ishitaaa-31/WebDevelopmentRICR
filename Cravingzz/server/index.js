@@ -10,6 +10,7 @@ import UserRouter from "./src/routers/userRouter.js"
 import { verifyRazorpayConnect } from "./src/config/razorpay.js";
 import RiderRouter from "./src/routers/riderRouter.js";
 import restaurantRouter from "./src/routers/restaurantRouter.js"
+import PaymentRouter from "./src/routers/payment.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -22,6 +23,7 @@ app.use ("/user",UserRouter)
 app.use("/public",publicRouter)
 app.use("/rider", RiderRouter);
 app.use("/restaurant",restaurantRouter)
+app.use("/payment", PaymentRouter)
 app.get("/", (req, res) => {
   console.log("Server is working");
 });
