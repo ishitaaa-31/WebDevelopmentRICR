@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../components/restaurantDashboard/Sidebar";
+import Sidebar from "../../components/userDashboard/Sidebar";
 import Overview from "../../components/userDashboard/Overview";
 import Profile from "../../components/userDashboard/Profile";
 import Order from "../../components/userDashboard/Order";
@@ -10,11 +10,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const { role, isLogin } = useAuth();
-  const ActiveTab = useLocation().state.tab;
+
+  const location = useLocation(); // get location first
+  const ActiveTab = location.state?.tab; // safe access (may be undefined)
+
   const navigate = useNavigate();
+
   const [active, setActive] = useState(ActiveTab || "overview");
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   useEffect(() => {
     if (!isLogin) {
       navigate("/login");
@@ -26,9 +29,7 @@ const UserDashboard = () => {
       <>
         <div className="p-3">
           <div className="border rounded shadow p-5 w-4xl mx-auto text-center bg-gray-100">
-            <div className="text-5xl text-red-600">
-              ⊗
-            </div>
+            <div className="text-5xl text-red-600">⊗</div>
             <div className="text-xl">
               You are not login as Customer. Please Login again.
             </div>
@@ -44,7 +45,7 @@ const UserDashboard = () => {
         <div
           className={`bg-(--color-background) duration-300 ${isCollapsed ? "w-2/60" : "w-12/60"}`}
         >
-          <UserSideBar
+          <Sidebar
             active={active}
             setActive={setActive}
             isCollapsed={isCollapsed}
